@@ -3,15 +3,12 @@ import {createBrowserRouter, Navigate, Outlet,} from "react-router-dom";
 import Layout from "@/layout/Layout.tsx";
 import LoginPage from "@/pages/LoginPage.tsx";
 import HomePage from "@/pages/HomePage.tsx";
+import { useAuth } from "@/context/AuthContext";
 
-// Ruta protegida: solo deja pasar si hay usuario
 function RequireAuth() {
     // TODO
-    //const {user} = useAuth();
-    /* --------------------------- */
-    const user = {name:"John Doe"};
+    const {user} = useAuth();
 
-    /* --------------------------- */
     if (!user) {
         return <Navigate to="/login" replace/>;
     }

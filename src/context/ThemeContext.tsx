@@ -19,7 +19,7 @@ type ThemeProviderProps = {
 }
 
 //Componente Provider: guarda el estado y pasa el value al contexto (AQUI TENEMOS QUE METER EL USESTATE, USEEFFECT)
-export default function ThemeProvider({children}:ThemeProviderProps){
+export function ThemeProvider({children}:ThemeProviderProps){
     const currentTheme = window.localStorage.getItem(THEME_KEY);
     const storedTheme = currentTheme === 'dark' ? 'dark' : 'light';
 

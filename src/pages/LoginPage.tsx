@@ -1,36 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
+import { useLanguage } from "@/context/LanguageContext";
 
-import es from "../locales/es.json";
-import en from "../locales/en.json";
-const translations = { es, en } as const;
-export type Language = "es" | "en";
+
 
 export default function LoginPage() {
-    // TODO
-    //const {login} = useAuth();
-    const login = (username:string)=>{
-        console.log(`Autenticado comom ${username}`);
-    }
+        
+    const { user, login } = useAuth();
 
-    //const {t} = useLanguage();
-    /* --------------------------- */
-    // Eliminar
-    const language:Language = "es";
-    const t = (key:string):string => {
-        // @ts-ignore
-        return translations[language][key];
-    }
-    /* --------------------------- */
-
-
+    const { t } = useLanguage();
+    
     const [name, setName] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!name.trim()) return;
-        login(name.trim());
-
+        
+        login(name.trim()); 
     };
+
+    if (user) {
+        return <Navigate to="/" replace />;
+    }
 
     return (
         <section className="max-w-md bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 space-y-4">
@@ -60,8 +52,7 @@ export default function LoginPage() {
             </form>
 
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                En la app real, aquí llamaríamos a una API. En esta demo solo guardamos
-                el nombre en el contexto global.
+                {("loginDisclaimer")}
             </p>
         </section>
     );

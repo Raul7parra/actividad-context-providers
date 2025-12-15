@@ -1,22 +1,11 @@
-import es from "../locales/es.json";
-import en from "../locales/en.json";
-const translations = { es, en } as const;
+import { useAuth } from "@/context/AuthContext";
+import { useLanguage } from "@/context/LanguageContext";
 export default function HomePage() {
     // TODO
-    //const {user, logout} = useAuth();
-    /* --------------------------- */
-    const logout = ()=>{
-        console.log(`Eliminando autenticación`);
-    }
-    const user = {name:"Raúl Parra"};
+    const {user, logout} = useAuth();
 
-    // Eliminar
-    const language = "en";
-    const t = (key:string):string => {
-        // @ts-ignore
-        return translations[language][key];
-    }
-    /* --------------------------- */
+    const { t } = useLanguage();
+
     const name = user?.name ?? "Usuario";
 
     const handleLogout = () => {

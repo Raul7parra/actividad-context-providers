@@ -1,14 +1,8 @@
-export default function LanguageSwitcher() {
-    // TODO
-    //const {language, setLanguage} = useLanguage();
-    /* --------------------------- */
-    // Eliminar
-    let language : "es" | "en" = "es";
-    const setLanguage = (lang: string) => {
-        console.log(`Cambiando el idioma: ${lang}`);
-    }
-    /* --------------------------- */
+import { useLanguage } from "@/context/LanguageContext";
 
+export default function LanguageSwitcher() {
+
+    const {language, setLanguage} = useLanguage();
 
     return (
         <div
