@@ -33,7 +33,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
     const [language, setLanguage] = useState<Language>(storedLang);
 
-    // Creamos la función pública para cambiar el idioma
+    // Creamos la función para cambiar el idioma
     const handleSetLanguage = useCallback((lang: Language) => {
         setLanguage(lang);
     }, []);
@@ -46,11 +46,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
         window.localStorage.setItem(LANGUAGE_KEY, language);
     }, [language]);
 
-    const value: LanguageContextType = {
-        language,
-        setLanguage: handleSetLanguage,
-        t,
-    };
+    const value: LanguageContextType = {language, setLanguage: handleSetLanguage, t};
 
     return (
         <LanguageContext.Provider value={value}>
